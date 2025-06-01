@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import MovieCard from "@/components/MovieCard";
@@ -15,7 +14,7 @@ const movies = [
     duration: "2h 15m",
     rating: "PG-13",
     showtimes: ["14:30", "17:45", "20:30", "23:15"],
-    poster: "/placeholder.svg"
+    poster: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=300&h=450&fit=crop"
   },
   {
     id: 2,
@@ -24,7 +23,7 @@ const movies = [
     duration: "1h 55m",
     rating: "R",
     showtimes: ["15:00", "18:15", "21:00", "23:45"],
-    poster: "/placeholder.svg"
+    poster: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=450&fit=crop"
   },
   {
     id: 3,
@@ -33,7 +32,7 @@ const movies = [
     duration: "2h 05m",
     rating: "PG",
     showtimes: ["14:00", "16:45", "19:30", "22:15"],
-    poster: "/placeholder.svg"
+    poster: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=300&h=450&fit=crop"
   },
   {
     id: 4,
@@ -42,7 +41,43 @@ const movies = [
     duration: "2h 30m",
     rating: "PG-13",
     showtimes: ["13:45", "17:00", "20:15", "23:30"],
-    poster: "/placeholder.svg"
+    poster: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=300&h=450&fit=crop"
+  },
+  {
+    id: 5,
+    title: "Forest Escape",
+    genre: "Adventure",
+    duration: "1h 45m",
+    rating: "PG",
+    showtimes: ["13:30", "16:00", "18:45", "21:30"],
+    poster: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=450&fit=crop"
+  },
+  {
+    id: 6,
+    title: "Ocean's Call",
+    genre: "Drama",
+    duration: "2h 20m",
+    rating: "PG-13",
+    showtimes: ["14:15", "17:30", "20:45", "23:00"],
+    poster: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=300&h=450&fit=crop"
+  },
+  {
+    id: 7,
+    title: "Digital Matrix",
+    genre: "Sci-Fi",
+    duration: "2h 35m",
+    rating: "R",
+    showtimes: ["13:00", "16:30", "20:00", "23:30"],
+    poster: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=300&h=450&fit=crop"
+  },
+  {
+    id: 8,
+    title: "Midnight Thriller",
+    genre: "Horror",
+    duration: "1h 50m",
+    rating: "R",
+    showtimes: ["15:30", "18:00", "21:15", "23:45"],
+    poster: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=450&fit=crop"
   }
 ];
 
