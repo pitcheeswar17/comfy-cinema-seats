@@ -3,10 +3,22 @@ import { Button } from "@/components/ui/button";
 import MovieCard from "@/components/MovieCard";
 import SeatMap from "@/components/SeatMap";
 import TicketReceipt from "@/components/TicketReceipt";
+import AddMovieDialog from "@/components/AddMovieDialog";
+import GenreFilter from "@/components/GenreFilter";
 import { BookingProvider, useBooking } from "@/components/BookingProvider";
 import { ArrowLeft } from "lucide-react";
 
-const movies = [
+interface Movie {
+  id: number;
+  title: string;
+  genre: string;
+  duration: string;
+  rating: string;
+  showtimes: string[];
+  poster: string;
+}
+
+const initialMovies: Movie[] = [
   {
     id: 1,
     title: "Cosmic Adventure",
@@ -82,6 +94,9 @@ const movies = [
 ];
 
 const BookingApp = () => {
+  const [movies, setMovies] = useState<Movie[]>(initialMovies);
+  const [selectedGenre, setSelectedGenre] = useState("All");
+  
   const {
     currentStep,
     selectedMovie,
@@ -96,7 +111,16 @@ const BookingApp = () => {
     resetBooking,
   } = useBooking();
 
-  const handleBookNow = (movie: typeof movies[0], showtime: string) => {
+  const availableGenres = Array.from(new Set(movies.map(movie => movie.genre)));
+  const filteredMovies = selectedGenre === "All" 
+    ? movies 
+    : movies.filter(movie => movie.genre === selectedGenre);
+
+  const handleAddMovie = (newMovie: Movie) => {
+    setMovies(prev => [...prev, newMovie]);
+  };
+
+  const handleBookNow = (movie: Movie, showtime: string) => {
     console.log('Booking movie:', movie.title, 'at', showtime);
     setSelectedMovie(movie);
     setSelectedShowtime(showtime);
@@ -140,9 +164,18 @@ const BookingApp = () => {
             </h1>
             <p className="text-slate-300 text-lg">Choose your movie and showtime</p>
           </div>
+
+          <div className="flex justify-between items-center mb-8">
+            <GenreFilter
+              selectedGenre={selectedGenre}
+              onGenreChange={setSelectedGenre}
+              availableGenres={availableGenres}
+            />
+            <AddMovieDialog onAddMovie={handleAddMovie} />
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {movies.map((movie) => (
+            {filteredMovies.map((movie) => (
               <MovieCard
                 key={movie.id}
                 movie={movie}
@@ -150,6 +183,12 @@ const BookingApp = () => {
               />
             ))}
           </div>
+
+          {filteredMovies.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-slate-400 text-lg">No movies found for the selected genre.</p>
+            </div>
+          )}
         </div>
       </div>
     );
